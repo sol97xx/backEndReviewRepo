@@ -12,4 +12,8 @@ app.all('/*', routeNotFound);
 
 app.use(handle500);
 
+app.use((err,req,res,next)=>{
+console.log(err)
+})
+
 module.exports = app;
