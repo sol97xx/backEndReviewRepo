@@ -91,7 +91,7 @@ describe('/', () => {
         it.only('GET status:400, responds with custom error when article_id invalid', () => {
           return request(app).get('/api/articles/NotAnInt')
             .expect(400)
-            .then(( body ) => {
+            .then(( {body} ) => {
              expect(body.message).to.equal("bad request")
             });
         })
