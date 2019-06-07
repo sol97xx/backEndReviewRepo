@@ -85,7 +85,14 @@ describe('/', () => {
           return request(app).get('/api/articles/9999')
             .expect(404)
             .then(( body ) => {
-             expect(body.text).to.equal("username not found")
+             expect(body.text).to.equal("article not found")
+            });
+        })
+        it.only('GET status:400, responds with custom error when article_id invalid', () => {
+          return request(app).get('/api/articles/NotAnInt')
+            .expect(400)
+            .then(( body ) => {
+             expect(body.message).to.equal("bad request")
             });
         })
     })
@@ -217,5 +224,5 @@ describe('POST /api/articles/:article_id/comments', () => {
 
           });
       })
-}).timeout(5000)
+}).timeout(10000)
 

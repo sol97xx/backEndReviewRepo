@@ -3,6 +3,7 @@ const {fetchArticleByArticleID, updateVotesModel,fetchAllArticles} = require('..
 exports.getArticleByArticleID = (req,res,next)=>{
 fetchArticleByArticleID(req.params).then((data)=>{if(data.Article.length===0)
     {return Promise.reject({"message":"article not found","status":404})}
+    
 else{return data}})
 .then((article)=>{res.status(200).send(article)}).catch(next)
 }
