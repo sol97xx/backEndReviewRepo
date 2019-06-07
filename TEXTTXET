@@ -201,7 +201,7 @@ POST /api/articles/:article_id/comments
 - an object with the following properties:
   - `username`
   - `body`
-
+/comments/:comment_id
 #### Responds with
 
 - the posted comment

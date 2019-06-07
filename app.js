@@ -10,10 +10,11 @@ app.use('/api', apiRouter);
 
 app.all('/*', routeNotFound);
 
-app.use(handle500);
+
 
 app.use((err,req,res,next)=>{
-console.log(err)
+if(err.status){res.status(err.status).send(err.message)}
 })
+app.use(handle500);
 
 module.exports = app;

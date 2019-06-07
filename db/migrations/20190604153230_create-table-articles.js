@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-    console.log('is it happening AGAIN')
+    console.log('creating table articles')
     return knex.schema.createTable('articles', (articles) => {
         articles.increments('article_id').primary()
         articles.string('title')
