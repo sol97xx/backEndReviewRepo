@@ -88,7 +88,7 @@ describe('/', () => {
              expect(body.text).to.equal("article not found")
             });
         })
-        it.only('GET status:400, responds with custom error when article_id invalid', () => {
+        it('GET status:400, responds with custom error when article_id invalid', () => {
           return request(app).get('/api/articles/NotAnInt')
             .expect(400)
             .then(( {body} ) => {
