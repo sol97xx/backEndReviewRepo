@@ -1,5 +1,5 @@
 const {articles,comments,topics,users} = require('../data/index');
-const {formatData, giveDate} = require('/home/sol/BENDPROJECT/utils/format-data.js')
+const {formatArticles,formatComments} = require('/home/sol/BENDPROJECT/utils/format-data.js')
 
 
 exports.seed = (knex, Promise) => {
@@ -16,12 +16,11 @@ exports.seed = (knex, Promise) => {
     })
     .then(()=>{
    
-    const data = giveDate(articles)
-    return knex('articles').insert(data).returning('*')
+    const articlesData = formatArticles(articles)
+    return knex('articles').insert(articlesData).returning('*')
     })
     .then((articles)=>{
-    const data = formatData(comments,articles)
-    return knex('comments').insert(data, '*')
+    const commentsData = formatComments(comments,articles)
+    return knex('comments').insert(commentsData, '*')
     })
-    
 };  

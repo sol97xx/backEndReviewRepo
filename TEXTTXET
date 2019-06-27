@@ -220,7 +220,7 @@ GET /api/articles/:article_id/comments
   - `created_at`
   - `author` which is the `username` from the users table
   - `body`
-
+ 
 #### Accepts queries
 
 - `sort_by`, which sorts the articles by any valid column (defaults to created_at)
