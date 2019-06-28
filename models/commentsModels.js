@@ -24,12 +24,12 @@ exports.updateCommentVotesModel = ({ body }, { comment_id }) => {
   return connection("comments")
     .where("comment_id", "=", comment_id)
     .increment("votes", body.inc_votes)
-    .returning('*')
+    .returning("*");
 };
 
 exports.deleteCommentModel = ({ comment_id }) => {
   return connection("comments")
     .where("comment_id", "=", comment_id)
     .del()
-    .returning('*');
+    .returning("*");
 };

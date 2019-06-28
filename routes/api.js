@@ -1,40 +1,21 @@
-const apiRouter = require('express').Router();
-const { methodNotAllowed } = require('../errors');
-const { getAllTopics } = require('../controllers/topics-controllers')
-const { getUserByUserName } = require('../controllers/users-controllers')
-const { getArticleByArticleID, updateVotesController, getAllArticles } = require('../controllers/articles-controllers')
-const { postCommentController, getCommentsByArticleID, updateCommentVotesController, deleteCommentController } = require('../controllers/comments-controllers')
+const apiRouter = require("express").Router();
+const { methodNotAllowed } = require("../errors");
+const { articlesRouter } = require("./articlesRouter");
+const { commentsRouter } = require("./commentsRouter");
+const { topicsRouter } = require("./topicsRouter");
+const { usersRouter } = require("./usersRouter");
 
 apiRouter
-  .route('/')
+  .route("/")
   .get((req, res) => res.send({ ok: true }))
   .all(methodNotAllowed);
 
-apiRouter.route('/topics').get(getAllTopics)
-  .all(methodNotAllowed)
+apiRouter.use("/articles", articlesRouter);
 
-apiRouter.route('/users/:username').get(getUserByUserName)
-  .all(methodNotAllowed)
+apiRouter.use("/comments", commentsRouter);
 
-apiRouter.route('/articles/:article_id').get(getArticleByArticleID)
-  .patch(updateVotesController)
-  .all(methodNotAllowed)
+apiRouter.use("/topics", topicsRouter);
 
-apiRouter.route('/articles/:article_id/comments').post(postCommentController)
-  .get(getCommentsByArticleID)
-  .all(methodNotAllowed)
-
-apiRouter.route('/articles').get(getAllArticles)
-  .all(methodNotAllowed)
-
-apiRouter.route('/comments/:comment_id').patch(updateCommentVotesController)
-  .delete(deleteCommentController)
-  .all(methodNotAllowed)
-
-
-
-
-
-
+apiRouter.use("/users", usersRouter);
 
 module.exports = apiRouter;

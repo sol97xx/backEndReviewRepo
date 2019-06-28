@@ -6,10 +6,6 @@ const {
 } = require("../models/commentsModels");
 
 exports.postCommentController = (req, res, next) => {
-  if (!req.body.inc_votes) {
-    next({ message: "malformed request body", status: 400 });
-    return;
-  }
   postCommentModel(req, req.params)
     .then(data => {
       res.status(201).send({ comment: data[0] });
@@ -23,15 +19,22 @@ exports.getCommentsByArticleID = (req, res, next) => {
       if (data.length === 0) {
         return Promise.reject({ message: "article not found", status: 404 });
       }
-      res.status(200).send({comments: data});
+      res.status(200).send({ comments: data });
     })
     .catch(next);
 };
 
 exports.updateCommentVotesController = (req, res, next) => {
+  if (!req.body.inc_votes) {
+    next({ message: "malformed/missing request body", status: 400 });
+    return;
+  }
   updateCommentVotesModel(req, req.params)
-    .then((data) => {
-      res.send({comment: data[0]});
+    .then(data => {
+      if (data.length === 0) {
+        return Promise.reject({ message: "comment not found", status: 404 });
+      }
+      res.status(200).send({ comment: data[0] });
     })
     .catch(next);
 };
