@@ -7,7 +7,7 @@ exports.fetchArticleByArticleID = ({ article_id }) => {
     .count({ comment_count: "articles.article_id" })
     .leftJoin("comments", "articles.article_id", "comments.article_id")
     .groupBy("articles.article_id")
-    // .returning("*");
+    
 };
 
 exports.updateVotesModel = ({ body }, { article_id }) => {
