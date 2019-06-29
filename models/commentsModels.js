@@ -17,7 +17,7 @@ exports.getCommentsByArticleIDModel = (query, { article_id }) => {
   return connection("comments")
     .select("comment_id", "votes", "created_at", "author", "body")
     .where("article_id", "=", article_id)
-    .orderBy(`${sortOption}`, `${ascOrDes}`);
+    .orderBy(sortOption, ascOrDes);
 };
 
 exports.updateCommentVotesModel = ({ body }, { comment_id }) => {

@@ -7,7 +7,7 @@ exports.fetchArticleByArticleID = ({ article_id }) => {
     .count({ comment_count: "articles.article_id" })
     .leftJoin("comments", "articles.article_id", "comments.article_id")
     .groupBy("articles.article_id")
-    .returning("*");
+    // .returning("*");
 };
 
 exports.updateVotesModel = ({ body }, { article_id }) => {
@@ -18,9 +18,9 @@ exports.updateVotesModel = ({ body }, { article_id }) => {
     .returning("*");
 };
 
-exports.fetchAllArticles = (query, { article_id }) => {
+exports.fetchAllArticles = (query) => {
   let sortOption = query.sort_by || "created_at";
-  let ascORdes = query.order || "desc";
+  let ascOrDesc = query.order || "desc";
 
   return connection("articles")
     .select("articles.*")
@@ -33,5 +33,5 @@ exports.fetchAllArticles = (query, { article_id }) => {
     .leftJoin("comments", "articles.article_id", "comments.article_id")
     .groupBy("articles.article_id")
     .count({ comment_count: "articles.article_id" })
-    .orderBy(`${sortOption}`, `${ascORdes}`);
+    .orderBy(sortOption, ascOrDesc);
 };

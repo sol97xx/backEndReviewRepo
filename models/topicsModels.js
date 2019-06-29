@@ -1,5 +1,5 @@
 const connection = require("../db/connection");
 
-exports.fetchAllTopics = query => {
+exports.fetchAllTopics = () => {
   return connection.select("*").from("topics");
 };

@@ -5,5 +5,5 @@ exports.fetchUserByUserName = ({ username }) => {
     .select("*")
     .from("users")
     .where("username", "=", username)
-    .returning("*");
+    
 };

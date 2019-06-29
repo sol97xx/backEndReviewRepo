@@ -308,7 +308,6 @@ describe("/", () => {
         .get("/api/articles")
         .expect(200)
         .then(({ body }) => {
-          console.log(body.Articles);
           expect(body.Articles).to.have.length(12);
           expect(body.Articles[2]).to.have.all.keys(
             "article_id",

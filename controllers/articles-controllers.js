@@ -32,7 +32,7 @@ exports.updateVotesController = (req, res, next) => {
 };
 
 exports.getAllArticles = (req, res, next) => {
-  fetchAllArticles(req.query, req.params)
+  fetchAllArticles(req.query)
     .then(data => {
       if (data.length === 0) {
         return Promise.reject({
