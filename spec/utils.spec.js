@@ -83,11 +83,11 @@ describe("formatComments", () => {
   });
 });
 
-describe("formatArticles", () => {
+describe.only("formatArticles", () => {
   it("does not mutate the original array", () => {
-    let originalArray = [...rawArticles];
+    let originalArray = rawArticles;
     let newFormattedArticles = formatArticles(originalArray);
-    expect(originalArray).to.eql(rawArticles);
+    expect(originalArray).to.equal(rawArticles);
   });
   it("successfully formats 1 article", () => {
     let rawArticle = [
@@ -108,7 +108,7 @@ describe("formatArticles", () => {
         author: "butter_bridge",
         body: "I find this existence challenging",
         created_at: new Date(1542284514171),
-        votes: 0
+        votes: 100
       }
     ];
     let actual = formatArticles(rawArticle);
@@ -124,7 +124,8 @@ describe("formatArticles", () => {
         author: "butter_bridge",
         body: "I find this existence challenging",
         created_at: new Date(1542284514171),
-        votes: 0
+        votes: 100
+        
       },
       {
         title: "Eight pug gifs that remind me of mitch",
@@ -132,7 +133,7 @@ describe("formatArticles", () => {
         author: "icellusedkars",
         body: "some gifs",
         created_at: new Date(1289996514171),
-        votes: 0
+        
       },
       {
         title: "UNCOVERED: catspiracy to bring down democracy",
@@ -140,11 +141,11 @@ describe("formatArticles", () => {
         author: "rogersop",
         body: "Bastet walks amongst us, and the cats are taking arms!",
         created_at: new Date(1037708514171),
-        votes: 0
+        
       }
     ];
 
     let actual = formatArticles(rawArticles);
-    expect(expected).to.eql(actual);
+    expect(actual).to.eql(expected);
   });
 });

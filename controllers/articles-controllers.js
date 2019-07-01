@@ -16,17 +16,12 @@ exports.getArticleByArticleID = (req, res, next) => {
 };
 
 exports.updateVotesController = (req, res, next) => {
-  if (!req.body.inc_votes) {
-    next({ message: "malformed/missing request body", status: 400 });
-    return;
-  }
   updateVotesModel(req, req.params)
     .then(data => {
       if (data.length === 0) {
         return Promise.reject({ message: "article not found", status: 404 });
-      } else {
-        res.status(200).send({ article: data[0] });
       }
+      res.status(200).send({ article: data[0] });
     })
     .catch(next);
 };
@@ -40,7 +35,7 @@ exports.getAllArticles = (req, res, next) => {
           status: 404
         });
       } else {
-        res.send({ Articles: data });
+        res.send({ articles: data });
       }
     })
     .catch(next);

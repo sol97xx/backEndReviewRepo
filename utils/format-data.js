@@ -19,7 +19,6 @@ exports.formatArticles = articles => {
   let articlesClone = [...articles];
   articlesClone.forEach(element => {
     element.created_at = new Date(element.created_at);
-    element.votes = 0;
   });
   return articlesClone;
 };

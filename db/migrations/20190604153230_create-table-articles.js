@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     articles.string("topic").references("topics.slug");
     articles.string("author").references("users.username");
     articles.timestamp("created_at").defaultTo(knex.fn.now());
+   
   });
 };
 

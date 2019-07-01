@@ -1,13 +1,11 @@
 const connection = require("../db/connection");
 
 exports.postCommentModel = ({ body }, { article_id }) => {
-  let comment = { ...body };
-  comment.author = body.username;
-  comment.article_id = article_id;
-  comment.created_at = new Date(Date.now());
-  delete comment.username;
+  body.author = body.username;
+  body.article_id = article_id;
+  delete body.username;
   return connection("comments")
-    .insert(comment)
+    .insert(body)
     .returning("*");
 };
 
@@ -21,9 +19,10 @@ exports.getCommentsByArticleIDModel = (query, { article_id }) => {
 };
 
 exports.updateCommentVotesModel = ({ body }, { comment_id }) => {
+  let propToUpdate = body.inc_votes || 0;
   return connection("comments")
     .where("comment_id", "=", comment_id)
-    .increment("votes", body.inc_votes)
+    .increment("votes", propToUpdate)
     .returning("*");
 };
 

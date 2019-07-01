@@ -308,8 +308,8 @@ describe("/", () => {
         .get("/api/articles")
         .expect(200)
         .then(({ body }) => {
-          expect(body.Articles).to.have.length(12);
-          expect(body.Articles[2]).to.have.all.keys(
+          expect(body.articles).to.have.length(12);
+          expect(body.articles[2]).to.have.all.keys(
             "article_id",
             "title",
             "body",
@@ -319,7 +319,7 @@ describe("/", () => {
             "created_at",
             "comment_count"
           );
-          expect(body.Articles[11]).to.eql({
+          expect(body.articles[11]).to.eql({
             article_id: 12,
             title: "Moustache",
             body: "Have you seen the size of that thing?",
@@ -337,8 +337,8 @@ describe("/", () => {
         .get("/api/articles?sort_by=title&order=asc")
         .expect(200)
         .then(({ body }) => {
-          expect(body.Articles).to.have.length(12);
-          expect(body.Articles[2]).to.have.all.keys(
+          expect(body.articles).to.have.length(12);
+          expect(body.articles[2]).to.have.all.keys(
             "article_id",
             "title",
             "body",
@@ -348,7 +348,7 @@ describe("/", () => {
             "created_at",
             "comment_count"
           );
-          expect(body.Articles).to.be.ascendingBy("title");
+          expect(body.articles).to.be.ascendingBy("title");
         });
     });
 
@@ -357,8 +357,8 @@ describe("/", () => {
         .get("/api/articles?sort_by=title&order=asc&author=rogersop&topic=cats")
         .expect(200)
         .then(({ body }) => {
-          expect(body.Articles).to.have.length(1);
-          expect(body.Articles[0]).to.have.all.keys(
+          expect(body.articles).to.have.length(1);
+          expect(body.articles[0]).to.have.all.keys(
             "article_id",
             "title",
             "body",
@@ -368,9 +368,9 @@ describe("/", () => {
             "created_at",
             "comment_count"
           );
-          expect(body.Articles).to.be.ascendingBy("title");
-          expect(body.Articles[0].topic).to.equal("cats");
-          expect(body.Articles[0].author).to.equal("rogersop");
+          expect(body.articles).to.be.ascendingBy("title");
+          expect(body.articles[0].topic).to.equal("cats");
+          expect(body.articles[0].author).to.equal("rogersop");
         });
     });
     it("status:400 when when sort_by set to non-existent column", () => {
@@ -479,4 +479,4 @@ describe("/", () => {
         });
     });
   });
-}).timeout(100000);
+});
