@@ -24,7 +24,7 @@ exports.getCommentsByArticleID = (req, res, next) => {
 
   getCommentsByArticleIDModel(req.query, req.params).then(data => {
     res.send({ comments: data });
-  });
+  }).catch(next)
 };
 
 exports.updateCommentVotesController = (req, res, next) => {
