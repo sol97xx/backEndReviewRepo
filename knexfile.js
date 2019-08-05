@@ -27,7 +27,7 @@ const customConfigs = {
       password: password
     }
   },
-  prouction: {
+  production: {
     connection: {
       database: "bendproject",
       username: username,
