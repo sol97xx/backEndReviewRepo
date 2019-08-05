@@ -1,4 +1,5 @@
 const ENV = process.env.NODE_ENV || "development";
+const { DB_URL } = process.env
 const {username} = process.env.NODE_ENV === 'production' ? process.env : require('./config')
 const {password} = process.env.NODE_ENV === 'production' ? process.env : require('./config')
 
@@ -28,12 +29,8 @@ const customConfigs = {
     }
   },
   production: {
-    connection: {
-      database: "bendproject",
-      username: username,
-      password: password
-    }
-  },
+    connection: `${DB_URL}?ssl=true`,
+  }
 };
 
 module.exports = { ...baseConfig, ...customConfigs[ENV] };
