@@ -26,7 +26,14 @@ const customConfigs = {
       username: username,
       password: password
     }
-  }
+  },
+  prouction: {
+    connection: {
+      database: "bendproject",
+      username: username,
+      password: password
+    }
+  },
 };
 
 module.exports = { ...baseConfig, ...customConfigs[ENV] };
