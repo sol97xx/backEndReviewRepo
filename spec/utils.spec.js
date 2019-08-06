@@ -83,7 +83,7 @@ describe("formatComments", () => {
   });
 });
 
-describe.only("formatArticles", () => {
+describe("formatArticles", () => {
   it("does not mutate the original array", () => {
     let originalArray = rawArticles;
     let newFormattedArticles = formatArticles(originalArray);
