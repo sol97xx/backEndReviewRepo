@@ -4,10 +4,11 @@ const { articlesRouter } = require("./articlesRouter");
 const { commentsRouter } = require("./commentsRouter");
 const { topicsRouter } = require("./topicsRouter");
 const { usersRouter } = require("./usersRouter");
+const routes = require ('./routesList')
 
 apiRouter
   .route("/")
-  .get((req, res) => res.send({ ok: true }))
+  .get((req, res) => res.send(routes))
   .all(methodNotAllowed);
 
 apiRouter.use("/articles", articlesRouter);
@@ -19,3 +20,6 @@ apiRouter.use("/topics", topicsRouter);
 apiRouter.use("/users", usersRouter);
 
 module.exports = apiRouter;
+
+
+

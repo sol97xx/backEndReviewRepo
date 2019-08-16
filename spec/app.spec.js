@@ -17,9 +17,6 @@ describe("/", () => {
       return request(app)
         .get("/api")
         .expect(200)
-        .then(({ body }) => {
-          expect(body.ok).to.equal(true);
-        });
     });
   });
   describe("GET /api/topics", () => {
